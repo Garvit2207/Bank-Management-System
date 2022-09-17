@@ -19,7 +19,7 @@ void new_account()
         long long int phone_number;
     };
     struct node *newnode, *head = 0, *temp = 0;
-    int test, a = 0, b=0;
+    int test, a = 0, b = 0;
     printf("\n");
     printf("\t\t\t\t<------Customer Account Banking Management System------>\n\n");
     printf("\t\t\t\t\t <----------WELCOMING YOU!!---------->\n\n");
@@ -29,7 +29,7 @@ mainmenu:
     printf("2.Remove Account\n");
     printf("3.Update information of existing account\n");
     printf("4.For Transactions\n");
-    printf("5.Check the details of existing account\n");
+    printf("5.Check the details of existing accounts\n");
     printf("6.View customers list\n");
     printf("7.Exit\n\n");
     printf("Enter your choice: ");
@@ -37,7 +37,7 @@ mainmenu:
     printf("\n");
     if (choice == 1)
     {
-       b++;
+        b++;
         // int testcase;
         newnode = (struct node *)malloc(sizeof(struct node));
         newnode->next = 0;
@@ -87,7 +87,6 @@ mainmenu:
         }
     }
 
-
     else if (choice == 2)
     {
         a++;
@@ -117,8 +116,11 @@ mainmenu:
                     }
 
                     temp2->next = temp1;
+                    printf("\n");
+                    printf("Account has been removed successfully");
 
                     printf("\n");
+
                     printf("<--------------------System Updated Successfully-------------------->\n\n");
                 }
             }
@@ -143,9 +145,9 @@ mainmenu:
         }
     }
 
-
     else if (choice == 3)
     {
+        int found = 0;
         temp = head;
         int choice2;
         int accnumber;
@@ -155,8 +157,8 @@ mainmenu:
         {
             // {    char new_address[200];
             if (temp->acc_number == accnumber)
-            {
-                printf("1.Want to update your address\n");
+            {   found++;
+                printf("\n\n1.Want to update your address\n");
                 printf("2.Want to update your phone number\n");
                 scanf("%d", &choice2);
                 if (choice2 == 1)
@@ -176,8 +178,12 @@ mainmenu:
 
                 else
                     printf("You have entered wrong choice.\n");
-                temp = temp->next;
             }
+            temp = temp->next;
+        }
+        if (found == 0)
+        {
+            printf("You have entered wrong account number\n");
         }
         printf("\n");
         test = 0;
@@ -197,19 +203,20 @@ mainmenu:
     else if (choice == 4)
     {
         temp = head;
+        int found = 0;
         int choice3;
         int accnumber = 0;
         long long int transac_money = 0;
         // printf("\n");
         printf("Enter your account number: ");
         scanf("%d", &accnumber);
-        printf("\n\n");
         while (temp != 0)
         {
             // {    char new_address[200];
             if (temp->acc_number == accnumber)
             {
-                printf("Press buttons according to your requirements\n");
+                found++;
+                printf("\n\nPress buttons according to your requirements\n");
                 printf("1.To Deposit\n");
                 printf("2.To Withdraw\n");
                 scanf("%d", &choice3);
@@ -243,6 +250,10 @@ mainmenu:
             }
             temp = temp->next;
         }
+        if (found == 0)
+        {
+            printf("You have entered wrong account number\n");
+        }
         printf("\n");
         test = 0;
         printf("Enter 1 to go main menu or 0 to exit\n");
@@ -259,17 +270,15 @@ mainmenu:
         }
     }
 
-
-else if (choice == 5)
+    else if (choice == 5)
     {
-        if (a > 0 && b<2)
+        if (a > 0 && b < 2)
         {
             printf("S.no.\tName\t\tAccount number\t\tAccount Balance\t\tPhone Number");
-            
         }
         else
-            {
-                temp = head;
+        {
+            temp = head;
             int sno = 1;
             //  printf("S.no.\t\tName\t\tAccount number\t\tAccount Balance\t\tPhone Number");
             //     printf("\n");
@@ -282,10 +291,10 @@ else if (choice == 5)
                 if (accnumber == temp->acc_number)
                 {
                     temp->acc_number = accnumber;
-                   printf("S.no.\t\t Name\t\t Account number\t\tAccount Balance\t\t Phone Number");
+                    printf("S.no.\t\t Name\t\t Account number\t\tAccount Balance\t\t Phone Number");
                     printf("\n");
                     printf("%d\t\t%s %s\t\t%d\t\t\t%lld\t\t %lld", sno, temp->first_name, temp->second_name, temp->acc_number, temp->deposit_money, temp->phone_number);
-                break;
+                    break;
                 }
                 else
                 {
@@ -294,7 +303,7 @@ else if (choice == 5)
                 temp = temp->next;
                 // sno++;
             }
-            }
+        }
 
         printf("\n\n");
         test = 0;
@@ -312,16 +321,14 @@ else if (choice == 5)
         }
     }
 
-
-
     else if (choice == 6)
     {
-        if (a > 0 && b<2)
+        if (a > 0 && b < 2)
         {
             printf("S.no.\tName\t\tAccount number\t\tAccount Balance\t\tPhone Number");
-            
         }
-        else {
+        else
+        {
             temp = head;
             int sno = 1;
             printf("S.no.\t\t Name\t\t Account number\t\tAccount Balance\t\t Phone Number");
@@ -351,10 +358,10 @@ else if (choice == 5)
         }
     }
 
-else if(choice==7){
-    goto exit;
-}
-
+    else if (choice == 7)
+    {
+        goto exit;
+    }
 
     else
     {
